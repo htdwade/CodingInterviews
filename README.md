@@ -19,3 +19,4 @@
 |12|[矩阵中的路径](https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/12.StringPathInMatrix/StringPathInMatrix.cpp)|
 |13|[机器人的运动范围](https://www.nowcoder.com/practice/6e5207314b5241fb83f2329e89fdecc8?tpId=13&tqId=11219&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/13.RobotMove/RobotMove.cpp)|
 |14|剪绳子|[C++](https://github.com/htdwade/CodingInterviews/blob/master/14.CuttingRope/CuttingRope.cpp)|
+|15|[二进制中1的个数](https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&tqId=11164&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/15.NumberOf1InBinary/NumberOf1InBinary.cpp)|
