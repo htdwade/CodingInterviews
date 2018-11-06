@@ -1,4 +1,4 @@
-/* 
+/*
 
 剑指Offer
 面试题2：实现Singleton模式
@@ -7,43 +7,64 @@
 */
 
 #include <iostream>
+#include <atomic>
+#include <mutex>
 
 using namespace std;
 
-//单例模式就是一个类只能生成一个实例
-//《Effective C++》中提到的单例模式是用到local-static对象，也就是函数内部的static对象，好处就是第一次调用才生成并且生命周期一直存在
-class Singleton1
-{
+//懒汉 double check lock，会有re-order的问题，考虑C++11的memory model
+class Singleton1 {
 private:
-	Singleton1() {
-
-	}
+	static atomic<Singleton1*> singleton;
+	static mutex m_mutex;
+private:
+	Singleton1() {}
+	Singleton1(const Singleton1& other) {}
+	Singleton1& operator=(const Singleton1& other) {}
+	~Singleton1() {}
 public:
-	static Singleton1* getInstance()
-	{
-		static Singleton1* single = new Singleton1();
-		return single;
+	static Singleton1* getInstance() {
+		if (singleton == nullptr) {
+			lock_guard<mutex> lock(m_mutex);  // 自解锁
+			if (singleton == nullptr) {
+				singleton = new Singleton1();
+			}
+		}
+		return singleton;
+		}
+};
+atomic<Singleton1*> Singleton1::singleton = nullptr;
+mutex Singleton1::m_mutex;
+
+//饿汉
+class Singleton2 {
+private:
+	static Singleton2* singleton;
+private:
+	Singleton2() {}
+	Singleton2(const Singleton2& other) {}
+	Singleton2& operator=(const Singleton2& other) {}
+	~Singleton2() {}
+public:
+	static Singleton2* getInstance() {
+		return singleton;
 	}
 };
+Singleton2* Singleton2::singleton = new Singleton2();
 
-//《大话设计模式》中的就是用一个static的成员变量，但是在得到实例函数中判断这个变量是否为空
-class Singleton2
-{
+//Meyers' Singleton
+class Singleton3 {
 private:
-	static Singleton2 *single;
-	Singleton2() {
-
-	}
+	Singleton3() {}
+	Singleton3(const Singleton3& other) {}
+	Singleton3& operator=(const Singleton3& other) {}
+	~Singleton3() {}
 public:
-	static Singleton2* getInstance()
-	{
-		if (single == NULL)
-			single = new Singleton2();
-		return single;
+	static Singleton3* getInstance() {
+		static Singleton3 singleton;
+		return &singleton;
 	}
 };
-
-Singleton2* Singleton2::single = NULL;
 
 int main()
 {
@@ -54,6 +75,10 @@ int main()
 	Singleton2 *s3 = Singleton2::getInstance();
 	Singleton2 *s4 = Singleton2::getInstance();
 	if (s3 == s4)
+		cout << "success" << endl;
+	Singleton3 *s5 = Singleton3::getInstance();
+	Singleton3 *s6 = Singleton3::getInstance();
+	if (s5 == s6)
 		cout << "success" << endl;
 	return 0;
 }

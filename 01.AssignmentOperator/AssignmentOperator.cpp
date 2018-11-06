@@ -60,6 +60,10 @@ CMyString::~CMyString()
 }
 
 //经典的解法
+//返回值的类型为该类型的引用，才能连续赋值。
+//传入参数类型为常量引用，避免实参到形参的复制构造，并且不改变传入实例的状态。
+//释放自身内存
+//判断传入参数和当前实例是否为同一个实例
 CMyString& CMyString::operator = (const CMyString& str)
 {
 	if(this == &str)
@@ -77,6 +81,7 @@ CMyString& CMyString::operator = (const CMyString& str)
 /*
 
 //考虑异常安全性的解法
+//copy and swap
 CMyString& CMyString::operator = (const CMyString& str)
 {
 	if(this != &str)
