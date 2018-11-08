@@ -11,50 +11,43 @@
 
 using namespace std;
 
-struct BinaryTreeNode {
-	int m_nValue;
-	BinaryTreeNode* m_pLeft;
-	BinaryTreeNode* m_pRight;
-	BinaryTreeNode* m_pParent;
-	BinaryTreeNode(int x) : m_nValue(x), m_pLeft(nullptr), m_pRight(nullptr), m_pParent(nullptr) {}
+struct TreeLinkNode {
+	int val;
+	TreeLinkNode* left;
+	TreeLinkNode* right;
+	TreeLinkNode* next;
+	TreeLinkNode(int x) : val(x), left(nullptr), right(nullptr), next(nullptr) {}
 };
 
-BinaryTreeNode* GetNext(BinaryTreeNode* pNode)
+TreeLinkNode* GetNext(TreeLinkNode* pNode)
 {
-	if (pNode == nullptr)
-		return nullptr;
-	BinaryTreeNode* pNext = nullptr;
-	if (pNode -> m_pRight != nullptr)
-	{
-		BinaryTreeNode* pRight = pNode -> m_pRight;
-		while (pRight -> m_pLeft != nullptr)
-			pRight = pRight -> m_pLeft;
-		pNext = pRight;
-	}
-	else if (pNode -> m_pParent != nullptr)
-	{
-		BinaryTreeNode* pCurrent = pNode;
-		BinaryTreeNode* pParent = pNode -> m_pParent;
-		while (pParent != nullptr && pCurrent == pParent -> m_pRight)
-		{
-			pCurrent = pParent;
-			pParent = pParent -> m_pParent;
-		}
-		pNext = pParent;
-	}
-	return pNext;
+    if(pNode == nullptr)
+            return nullptr;
+    if(pNode -> right){
+        TreeLinkNode* cur = pNode -> right;
+        while(cur -> left)
+            cur = cur -> left;
+        return cur;
+    }
+    while(pNode -> next){
+        TreeLinkNode* parent = pNode -> next;
+        if(pNode == parent -> left)
+            return parent;
+        pNode = parent;
+    }
+    return nullptr;
 }
 
-void ConnectTreeNodes(BinaryTreeNode* pParent, BinaryTreeNode* pLeft, BinaryTreeNode* pRight)
+void ConnectTreeNodes(TreeLinkNode* pParent, TreeLinkNode* pLeft, TreeLinkNode* pRight)
 {
 	if (pParent != nullptr)
 	{
-		pParent->m_pLeft = pLeft;
-		pParent->m_pRight = pRight;
+		pParent->left = pLeft;
+		pParent->right = pRight;
 		if (pLeft != nullptr)
-			pLeft->m_pParent = pParent;
+			pLeft->next = pParent;
 		if (pRight != nullptr)
-			pRight->m_pParent = pParent;
+			pRight->next = pParent;
 	}
 }
 
@@ -64,18 +57,18 @@ void ConnectTreeNodes(BinaryTreeNode* pParent, BinaryTreeNode* pLeft, BinaryTree
 //      5   7  9    11
 int main()
 {
-	BinaryTreeNode* pNode8 = new BinaryTreeNode(8);
-	BinaryTreeNode* pNode6 = new BinaryTreeNode(6);
-	BinaryTreeNode* pNode10 = new BinaryTreeNode(10);
-	BinaryTreeNode* pNode5 = new BinaryTreeNode(5);
-	BinaryTreeNode* pNode7 = new BinaryTreeNode(7);
-	BinaryTreeNode* pNode9 = new BinaryTreeNode(9);
-	BinaryTreeNode* pNode11 = new BinaryTreeNode(11);
+	TreeLinkNode* pNode8 = new TreeLinkNode(8);
+	TreeLinkNode* pNode6 = new TreeLinkNode(6);
+	TreeLinkNode* pNode10 = new TreeLinkNode(10);
+	TreeLinkNode* pNode5 = new TreeLinkNode(5);
+	TreeLinkNode* pNode7 = new TreeLinkNode(7);
+	TreeLinkNode* pNode9 = new TreeLinkNode(9);
+	TreeLinkNode* pNode11 = new TreeLinkNode(11);
 	ConnectTreeNodes(pNode8, pNode6, pNode10);
 	ConnectTreeNodes(pNode6, pNode5, pNode7);
 	ConnectTreeNodes(pNode10, pNode9, pNode11);
-	cout << GetNext(pNode5)->m_nValue << endl;
-	cout << GetNext(pNode7)->m_nValue << endl;
+	cout << GetNext(pNode5)->val << endl;
+	cout << GetNext(pNode7)->val << endl;
 	if (GetNext(pNode11) == nullptr)
 		cout << "susscess" << endl;
 	return 0;
