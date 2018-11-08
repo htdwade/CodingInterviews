@@ -23,62 +23,50 @@ BinaryTreeNode* m_pRight;
 */
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-struct BinaryTreeNode {
-	int m_nValue;
-	BinaryTreeNode* m_pLeft;
-	BinaryTreeNode* m_pRight;
-	BinaryTreeNode(int x) : m_nValue(x), m_pLeft(nullptr), m_pRight(nullptr) {}
+struct TreeNode {
+	int val;
+	TreeNode* left;
+	TreeNode* right;
+	TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-BinaryTreeNode* ConstructCore(int* startPreorder, int* endPreorder, int* startInorder, int* endInorder);
-BinaryTreeNode* Construct(int* preorder, int* inorder, int length)
-{
-	if (preorder == nullptr || inorder == nullptr || length <= 0)
-		return nullptr;
-	return ConstructCore(preorder, preorder + length - 1, inorder, inorder + length - 1);
+TreeNode* construct(vector<int>& pre, int preStart, int preEnd, vector<int>& vin, int inStart, int inEnd);
+TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
+    if(pre.size() == 0 || vin.size() == 0)
+        return nullptr;
+    return construct(pre, 0, pre.size() - 1, vin, 0, vin.size() - 1);
 }
 
-BinaryTreeNode* ConstructCore(int* startPreorder, int* endPreorder, int* startInorder, int* endInorder)
-{
-	// 前序遍历序列的第一个数字是根结点的值
-	int rootValue = startPreorder[0];
-	BinaryTreeNode* root = new BinaryTreeNode(rootValue);
-	// 在中序遍历中找到根结点的值
-	int* rootInorder = startInorder;
-	while (rootInorder <= endInorder && *rootInorder != rootValue)
-		++rootInorder;
-	int leftLength = rootInorder - startInorder;
-	int* leftPreorderEnd = startPreorder + leftLength;
-	if (leftLength > 0)
-	{
-		// 构建左子树
-		root -> m_pLeft = ConstructCore(startPreorder + 1, leftPreorderEnd, startInorder, rootInorder - 1);
-	}
-	if (leftLength < endPreorder - startPreorder)
-	{
-		// 构建右子树
-		root -> m_pRight = ConstructCore(leftPreorderEnd + 1, endPreorder, rootInorder + 1, endInorder);
-	}
-	return root;
+TreeNode* construct(vector<int>& pre, int preStart, int preEnd, vector<int>& vin, int inStart, int inEnd){
+    if(preStart > preEnd || inStart > inEnd)
+        return nullptr;
+    TreeNode* root = new TreeNode(pre[preStart]);
+    int inRoot = inStart;
+    while(vin[inRoot] != pre[preStart])
+        inRoot++;
+    int leftLength = inRoot - inStart;
+    root -> left = construct(pre, preStart + 1, preStart + leftLength, vin, inStart, inRoot - 1);
+    root -> right = construct(pre, preStart + leftLength + 1, preEnd, vin, inRoot + 1, inEnd);
+    return root;
 }
 
-void preorderPrint(BinaryTreeNode* root) {
+void preorderPrint(TreeNode* root) {
 	if (root) {
-		cout << root->m_nValue << '\t';
-		preorderPrint(root->m_pLeft);
-		preorderPrint(root->m_pRight);
+		cout << root -> val << '\t';
+		preorderPrint(root -> left);
+		preorderPrint(root -> right);
 	}
 }
 
 int main()
 {
-	int preorder[] = { 1, 2, 4, 7, 3, 5, 6, 8 };
-	int inorder[] = { 4, 7, 2, 1, 5, 3, 8, 6 };
-	int length = 8;
-	BinaryTreeNode* root = Construct(preorder, inorder, length);
+	vector<int> pre = { 1, 2, 4, 7, 3, 5, 6, 8 };
+	vector<int> vin = { 4, 7, 2, 1, 5, 3, 8, 6 };
+	TreeNode* root = reConstructBinaryTree(pre, vin);
 	preorderPrint(root);
 	return 0;
 }
