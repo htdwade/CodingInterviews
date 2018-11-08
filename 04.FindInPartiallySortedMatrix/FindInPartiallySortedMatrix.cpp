@@ -1,4 +1,4 @@
-/* 
+/*
 
 剑指Offer
 面试题4：二维数组中的查找
@@ -13,33 +13,31 @@
 
 using namespace std;
 
-bool Find(vector<vector<int>> matrix, int rows, int columns, int number)
-{
-	bool found = false;
-	if (!matrix.empty() && rows > 0 && columns > 0) {
-		int row = 0;
-		int column = columns - 1;
-		while (row < rows && column >= 0) {
-			if (matrix[row][column] == number) {
-				found = true;
-				break;
-			}
-			else if (matrix[row][column] > number)
-				column--;
-			else
-				row++;
-		}
-	}
-	return found;
+bool Find(int target, vector<vector<int>> array) {
+        if(array.size() == 0 || array[0].size() == 0)
+            return false;
+        int rows = array.size();
+        int columns = array[0].size();
+        int row = 0;
+        int column = columns - 1;
+        while(row < rows && column >= 0){
+            if(array[row][column] == target)
+                return true;
+            else if(array[row][column] > target)
+                column--;
+            else
+                row++;
+        }
+        return false;
 }
 
 int main()
-{	
-	vector<vector<int>> matrix = {{1, 2, 8, 9},
+{
+	vector<vector<int>> array = {{1, 2, 8, 9},
 								  {2, 4, 9, 12},
 								  {4, 7, 10, 13},
 								  {6, 8, 11, 15}};
-	int number = 18;
-	cout << Find(matrix, 4, 4, number) << endl;
+	cout << Find(18, array) << endl;
+	cout << Find(15, array) << endl;
 	return 0;
 }
