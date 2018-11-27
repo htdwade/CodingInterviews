@@ -16,17 +16,11 @@
 */
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 // 题目一
-// 参数:
-//        numbers:     一个整数数组
-//        length:      数组的长度
-//        duplication: (输出) 数组中的一个重复的数字
-// 返回值:             
-//        true  - 输入有效，并且数组中存在重复的数字
-//        false - 输入无效，或者数组中没有重复的数字
 bool duplicate(int numbers[], int length, int* duplication)
 {
 	if (numbers == nullptr || length <= 0)
@@ -51,48 +45,27 @@ bool duplicate(int numbers[], int length, int* duplication)
 	return false;
 }
 
-int countRange(const int* numbers, int length, int start, int end);
 // 题目二
-// 参数:
-//        numbers:     一个整数数组
-//        length:      数组的长度
-// 返回值:             
-//        正数  - 输入有效，并且数组中存在重复的数字，返回值为重复的数字
-//        负数  - 输入无效，或者数组中没有重复的数字
-int getDuplication(const int* numbers, int length)
+int findDuplicate(vector<int>& nums) 
 {
-	if (numbers == nullptr || length <= 0)
-		return -1;
-	int start = 1;
-	int end = length - 1;
-	while (end >= start)
-	{
-		int middle = ((end - start) >> 1) + start;
-		int count = countRange(numbers, length, start, middle);
-		if (end == start)
-		{
-			if (count > 1)
-				return start;
-			else
-				break;
-		}
-		if (count > (middle - start + 1))
-			end = middle;
-		else
-			start = middle + 1;
-	}
-	return -1;
-}
-
-int countRange(const int* numbers, int length, int start, int end)
-{
-	if (numbers == nullptr)
-		return 0;
-	int count = 0;
-	for (int i = 0; i < length; i++)
-		if (numbers[i] >= start && numbers[i] <= end)
-			++count;
-	return count;
+    if(nums.size() < 2)
+        return -1;
+    for(auto a : nums)
+        if(a < 1 || a > nums.size() - 1)
+            return -1;
+    int start = 1, end = nums.size() - 1;
+    while(start < end){
+        int count = 0;
+        int mid = start + (end - start) / 2;
+        for(auto num : nums)
+            if(num <= mid)
+                count++;
+        if(count <= mid)
+            start = mid + 1;
+        else
+            end = mid;
+    }
+    return start;
 }
 
 int main()
@@ -103,9 +76,8 @@ int main()
 	duplicate(numbers1, length1, duplication);
 	cout << *duplication << endl;
 
-	int numbers2[] = { 2, 3, 5, 4, 3, 2, 6, 7 };
-	int length2 = sizeof(numbers2) / sizeof(numbers2[0]);
-	cout << getDuplication(numbers2, length2) << endl;
+	vector<int> numbers2 = { 2, 3, 5, 4, 3, 2, 6, 7 };
+	cout << findDuplicate(numbers2) << endl;
 
 	return 0;
 }
