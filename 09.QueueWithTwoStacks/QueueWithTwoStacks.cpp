@@ -2,8 +2,7 @@
 
 剑指Offer
 面试题9：用两个栈实现队列
-题目：用两个栈实现一个队列。队列的声明如下，请实现它的两个函数appendTail
-和deleteHead，分别完成在队列尾部插入结点和在队列头部删除结点的功能。
+题目：用两个栈实现一个队列。
 
 */
 
@@ -12,80 +11,41 @@
 
 using namespace std;
 
-template <typename T> class CQueue
+class Solution
 {
 public:
-	CQueue(void);
-	~CQueue(void);
-
-	// 在队列末尾添加一个结点
-	void appendTail(const T& node);
-
-	// 删除队列的头结点
-	T deleteHead();
-
-private:
-	stack<T> stack1;
-	stack<T> stack2;
-};
-
-template <typename T> CQueue<T>::CQueue(void)
-{
-}
-
-template <typename T> CQueue<T>::~CQueue(void)
-{
-}
-
-template<typename T> void CQueue<T>::appendTail(const T& element)
-{
-	stack1.push(element);
-}
-
-template<typename T> T CQueue<T>::deleteHead()
-{
-	if (stack2.size() <= 0)
-	{
-		while (stack1.size()>0)
-		{
-			T& data = stack1.top();
-			stack1.pop();
-			stack2.push(data);
-		}
+	void push(int node) {
+		stack1.push(node);
 	}
 
-	if (stack2.size() == 0)
-		throw new exception("queue is empty");
+	int pop() {
+		if (stack2.empty()) {
+			while (!stack1.empty()) {
+				stack2.push(stack1.top());
+				stack1.pop();
+			}
+		}
+		if (stack2.empty())
+			throw new exception("队列为空，出栈失败");
+		int t = stack2.top();
+		stack2.pop();
+		return t;
+	}
 
-	T head = stack2.top();
-	stack2.pop();
-
-	return head;
-}
+private:
+	stack<int> stack1;
+	stack<int> stack2;
+};
 
 int main()
 {
-	CQueue<char> queue;
-
-	queue.appendTail('a');
-	queue.appendTail('b');
-	queue.appendTail('c');
-
-	char head = queue.deleteHead();
-	cout << head << endl;
-
-	head = queue.deleteHead();
-	cout << head << endl;
-
-	queue.appendTail('d');
-	head = queue.deleteHead();
-	cout << head << endl;
-
-	queue.appendTail('e');
-	head = queue.deleteHead();
-	cout << head << endl;
-
-	head = queue.deleteHead();
-	cout << head << endl;
+	Solution solution;
+	solution.push(1);
+	solution.push(2);
+	solution.push(3);
+	cout << solution.pop() << endl;
+	solution.push(4);
+	cout << solution.pop() << endl;
+	cout << solution.pop() << endl;
 	return 0;
 }
