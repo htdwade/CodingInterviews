@@ -8,118 +8,52 @@
 */
 
 #include <iostream>
-#include <memory>
+#include <string>
 
 using namespace std;
 
-void PrintNumber(char* number);
-bool Increment(char* number);
-void Print1ToMaxOfNDigitsRecursively(char* number, int length, int index);
-
-void Print1ToMaxOfNDigits_1(int n)
-{
-	if (n <= 0)
-		return;
-
-	char *number = new char[n + 1];
-	memset(number, '0', n);
-	number[n] = '\0';
-
-	while (!Increment(number))
+class Solution {
+public:
+	void Print1ToMaxOfNDigits(int n)
 	{
-		PrintNumber(number);
+		if (n <= 0)
+			return;
+		string s(n, '0');
+		dfs(s, 0);
 	}
 
-	delete[]number;
-}
-
-bool Increment(char* number)
-{
-	bool isOverflow = false;
-	int nTakeOver = 0;
-	int nLength = strlen(number);
-
-	for (int i = nLength - 1; i >= 0; i--)
-	{
-		int nSum = number[i] - '0' + nTakeOver;
-		if (i == nLength - 1)
-			nSum++;
-
-		if (nSum >= 10)
-		{
-			if (i == 0)
-				isOverflow = true;
-			else
-			{
-				nSum -= 10;
-				nTakeOver = 1;
-				number[i] = '0' + nSum;
-			}
+private:
+	void dfs(string& s, int index) {
+		if (index == s.size()) {
+			print(s);
+			return;
 		}
-		else
-		{
-			number[i] = '0' + nSum;
-			break;
+		for (int i = 0; i < 10; i++) {
+			s[index] = i + '0';
+			dfs(s, index + 1);
 		}
 	}
 
-	return isOverflow;
-}
-
-void Print1ToMaxOfNDigits_2(int n)
-{
-	if (n <= 0)
-		return;
-
-	char* number = new char[n + 1];
-	number[n] = '\0';
-
-	for (int i = 0; i < 10; ++i)
+	void print(string s)
 	{
-		number[0] = i + '0';
-		Print1ToMaxOfNDigitsRecursively(number, n, 0);
+		int i = 0;
+		while (i < s.size() && s[i] == '0')
+			i++;
+		if (i == s.size())
+			return;
+		cout << s.substr(i) << endl;
 	}
-
-	delete[] number;
-}
-
-void Print1ToMaxOfNDigitsRecursively(char* number, int length, int index)
-{
-	if (index == length - 1)
-	{
-		PrintNumber(number);
-		return;
-	}
-
-	for (int i = 0; i < 10; ++i)
-	{
-		number[index + 1] = i + '0';
-		Print1ToMaxOfNDigitsRecursively(number, length, index + 1);
-	}
-}
-
-void PrintNumber(char* number)
-{
-	bool isBeginning0 = true;
-	int nLength = strlen(number);
-
-	for (int i = 0; i < nLength; ++i)
-	{
-		if (isBeginning0 && number[i] != '0')
-			isBeginning0 = false;
-
-		if (!isBeginning0)
-		{
-			cout << number[i];
-		}
-	}
-
-	cout << '\t';
-}
+};
 
 int main()
 {
-	Print1ToMaxOfNDigits_1(3);
-	Print1ToMaxOfNDigits_2(2);
+	Solution solution;
+	solution.Print1ToMaxOfNDigits(-1);
+	solution.Print1ToMaxOfNDigits(3);
 	return 0;
 }
+
+
+
+
+
