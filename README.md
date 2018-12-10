@@ -21,4 +21,5 @@
 |14|剪绳子|[C++](https://github.com/htdwade/CodingInterviews/blob/master/14.CuttingRope/CuttingRope.cpp)|
 |15|[二进制中1的个数](https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&tqId=11164&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/15.NumberOf1InBinary/NumberOf1InBinary.cpp)|
 |16|[数值的整数次方](https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&tqId=11165&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/16.Power/Power.cpp)|
-|17|[打印从1到最大的n位数]|[C++](https://github.com/htdwade/CodingInterviews/blob/master/17.Print1ToMaxOfNDigits/Print1ToMaxOfNDigits.cpp)|
+|17|[打印从1到最大的n位数]|[C++](https://github.com/htdwade/CodingInterviews/blob/master/17.Print1ToMaxOfNDigits/Print1ToMaxOfNDigits.cpp)
+|18|[删除链表的节点](https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/18.DeleteNodeInList/DeleteNodeInList.cpp)|
