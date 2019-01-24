@@ -54,3 +54,4 @@
 |47|[礼物的最大价值](https://www.acwing.com/problem/content/56/)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/47.MaxValueOfGifts/MaxValueOfGifts.cpp)|
 |48|[最长不含重复字符的子字符串](https://www.acwing.com/problem/content/57/)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/48.LongestSubstringWithoutDup/LongestSubstringWithoutDup.cpp)|
 |49|[丑数](https://www.nowcoder.com/practice/6aa9e04fc3794f68acf8778237ba065b?tpId=13&tqId=11186&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/49.UglyNumber/UglyNumber.cpp)|
+|50|[第一个只出现一次的字符](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/50.FirstNotRepeatingChar/FirstNotRepeatingChar.cpp)|
