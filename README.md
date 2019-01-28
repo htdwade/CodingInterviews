@@ -58,4 +58,5 @@
 |51|[数组中的逆序对](https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tqId=11188&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/51.InversePairs/InversePairs.cpp)|
 |52|[两个链表的第一个公共节点](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/52.FirstCommonNodesInLists/FirstCommonNodesInLists.cpp)|
 |53|[在排序数组中查找数字](https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/53.NumberOfK/NumberOfK.cpp)|
+|54|[二叉搜索树的第K小节点](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/54.KthNodeInBST/KthNodeInBST.cpp)|
 
