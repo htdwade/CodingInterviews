@@ -3,9 +3,6 @@
 剑指Offer
 面试题50：第一个只出现一次的字符
 
-题目一：字符串中第一个只出现一次的字符。在字符串中找出第一个只出现一次的字符。
-如输入"abaccdeff"，则输出'b'。
-
 题目二：字符流中第一个只出现一次的字符。请实现一个函数，用来找出字符流中第一个只出现一次的字符。
 例如，当从字符流中只读出前两个字符"go"时，第一个只出现一次的字符是'g'，当从该字符流中读出前6个字符"google"时，
 第一个只出现一次的字符是'l'。
@@ -20,17 +17,6 @@ using namespace std;
 
 class Solution {
 public:
-	//字符串中第一个只出现一次的字符
-	int firstUniqChar(string s) {
-		unordered_map<char, int> hash;
-		for (auto c : s)
-			hash[c]++;
-		for (int i = 0; i < s.size(); i++)
-			if (hash[s[i]] == 1)
-				return i;
-		return -1;
-	}
-
 	//字符流中第一个只出现一次的字符
 	//Insert one char from stringstream
 	void Insert(char ch)
@@ -55,7 +41,6 @@ private:
 int main()
 {
 	Solution solution;
-	cout << solution.firstUniqChar("abaccdeff") << endl;
 	solution.Insert('g');
 	solution.Insert('o');
 	cout << solution.FirstAppearingOnce() << endl;

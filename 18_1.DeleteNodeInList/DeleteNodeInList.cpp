@@ -12,9 +12,6 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
  };
 
-题目二：删除链表中重复的节点。
-在一个排序的链表中，如何删除重复的节点？
-
 */
 
 #include <iostream>
@@ -27,7 +24,6 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
-//在O(1)时间内删除链表节点
 void DeleteNode(ListNode* head, ListNode* node)
 {
 	if (head == nullptr || node == nullptr)
@@ -60,24 +56,6 @@ void DeleteNode(ListNode* head, ListNode* node)
 	}
 }
 
-//删除链表中重复的节点
-ListNode* deleteDuplicates(ListNode* head) {
-	ListNode* dummy = new ListNode(-1);
-	dummy->next = head;
-	ListNode* pre = dummy;
-	ListNode* cur = head;
-	while (cur != nullptr) {
-		while (cur->next != nullptr && cur->val == cur->next->val)
-			cur = cur->next;
-		if (pre->next == cur)
-			pre = pre->next;
-		else
-			pre->next = cur->next;
-		cur = cur->next;
-	}
-	return dummy->next;
-}
-
 void printList(ListNode* head) {
 	ListNode* p = head;
 	while (p) {
@@ -100,9 +78,7 @@ int main()
 	p4->next = p5;
 	ListNode* head = p1;
 	printList(head);
-	/*DeleteNode(head, p3);
-	printList(head);*/
-	ListNode* newHead = deleteDuplicates(head);
-	printList(newHead);
+	DeleteNode(head, p3);
+	printList(head);
 	return 0;
 }
