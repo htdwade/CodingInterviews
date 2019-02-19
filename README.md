@@ -68,4 +68,5 @@
 |54|[二叉搜索树的第K小节点](https://www.nowcoder.com/practice/ef068f602dde4d28aab2b210e859150a?tpId=13&tqId=11215&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/54.KthNodeInBST/KthNodeInBST.cpp)|
 |55_1|[二叉树的深度](https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/55_1.TreeDepth/TreeDepth.cpp)|
 |55_2|[平衡二叉树](https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&tqId=11192&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/55_2.BalancedBinaryTree/BalancedBinaryTree.cpp)|
-
+|56_1|[数组中只出现一次的两个数字](https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/56_1.NumbersAppearOnce/NumbersAppearOnce.cpp)|
+|56_2|[数组中唯一只出现一次的数字](https://www.acwing.com/problem/content/70/)|[C++](https://github.com/htdwade/CodingInterviews/blob/master/56_2.NumberAppearingOnce/NumberAppearingOnce.cpp)|
